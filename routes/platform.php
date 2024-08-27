@@ -110,9 +110,11 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 
 
 Route::screen('places', PlaceListScreen::class)->name('platform.place.list');
-Route::screen('place/{place?}', PlaceEditScreen::class)->name('platform.place.edit');
+Route::screen('place/edit/{place}', PlaceEditScreen::class)->name('platform.place.edit');
+Route::screen('place/new', PlaceEditScreen::class)->name('platform.place.new');
 Route::screen('pilgrim/groups', PilgrimGroupListScreen::class)->name('platform.pilgrim.group.list');
-Route::screen('pilgrim/group/{group?}', PilgrimGroupEditScreen::class)->name('platform.pilgrim.group.edit');
+Route::screen('pilgrim/group/edit/{group}', PilgrimGroupEditScreen::class)->name('platform.pilgrim.group.edit');
+Route::screen('pilgrim/group/new', PilgrimGroupEditScreen::class)->name('platform.pilgrim.group.new');
 Route::screen('pilgrims', PilgrimListScreen::class)->name('platform.pilgrim.list');
 Route::screen('pilgrims/{group?}', PilgrimEditScreen::class)->name('platform.pilgrim.edit');
 

@@ -53,12 +53,12 @@ class PilgrimGroupEditScreen extends Screen
         return [
             Button::make('ایجاد گروه')
                 ->icon('pencil')
-                ->method('createOrUpdate')
+                ->method('create')
                 ->canSee(!$this->group->exists),
 
             Button::make('ویرایش')
                 ->icon('note')
-                ->method('createOrUpdate')
+                ->method('update')
                 ->canSee($this->group->exists),
 
             Button::make('جذف')
@@ -122,7 +122,7 @@ class PilgrimGroupEditScreen extends Screen
      *
      * @return RedirectResponse
      */
-    public function createOrUpdate(Request $request, PilgrimGroup $group): RedirectResponse
+    public function create(Request $request): RedirectResponse
     {
 
 //        var_dump($data);
@@ -181,13 +181,92 @@ class PilgrimGroupEditScreen extends Screen
             $tags[] = "4";
         }
 
-        if(empty($group)) {
-            $this->group->fill($data)->save();
-            $this->group->tags()->sync($tags);
-        } else {
+        if(empty($this->group)) {
+            $this->group = new PilgrimGroup();
+        }
+        $this->group->fill($data)->save();
+        $this->group->tags()->sync($tags);
+
+
+//        $group->admins()->sync($tags);
+
+        Alert::info('گروه با موفقیت ایجاد شد');
+
+        return redirect()->route('platform.pilgrim.group.list');
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function update(Request $request, PilgrimGroup $group): RedirectResponse
+    {
+
+//        var_dump($data);
+//        die();
+
+        $this->validate(request(), [
+            'group.team_leader_name' => 'required|max:255',
+            'group.team_leader_lastname' => 'required|max:2048',
+            'group.team_leader_phone' => 'required|max:512',
+            'group.team_leader_national_code' => 'required',
+            'group.team_leader_birthdate' => 'required|max:255',
+            'group.transport_method' => 'required|max:255',
+//            'group.companions_count' => 'required|max:255',
+            'group.men_count' => 'required|max:255',
+            'group.women_count' => 'required|max:255',
+            'group.children_count' => 'required|max:255',
+//            'group.women_only_group' => 'required|max:255',
+            'group.staying_duration_day' => 'required|max:255',
+//            'group.admins' => 'required|max:255',
+//            'group.map.lat' => 'required|max:255',
+//            'group.map.lng' => 'required|max:255',
+
+        ], [],
+            [
+                'group.team_leader_name' => 'نام سرگروه',
+                'group.team_leader_lastname'=> 'نام خانوادگی سرگروه',
+                'group.team_leader_phone'=> 'تلفن تماس سرگروه',
+                'group.team_leader_national_code' => 'کد ملی سرگروه',
+                'group.team_leader_birthdate' => 'تاریخ تولد سرگروه',
+                'group.transport_method' => 'وسیله مسافرت',
+//                'group.companions_count' => 'تعداد همراهان',
+                'group.men_count' => 'تعداد مردان',
+                'group.women_count' => 'تعداد خانم ها',
+                'group.children_count' => 'تعداد کودکان',
+//                'group.women_only_group' => 'گروه زنانه',
+                'group.staying_duration_day' => 'مدت اقامت',
+//                'group.admins' => 'admin',
+//                'group.map.lat'=> 'Latitude',
+//                'group.map.lng'=> 'Longitude',
+            ]);
+
+        $data = $request->get('group');
+
+        $data['team_leader_phone'] = $this->convert2english($data['team_leader_phone']);
+        $data['team_leader_national_code'] = $this->convert2english($data['team_leader_national_code']);
+        $data['team_leader_birthdate'] = $this->convert2english($data['team_leader_birthdate']);
+        $data['men_count'] = $this->convert2english($data['men_count']);
+        $data['women_count'] = $this->convert2english($data['women_count']);
+        $data['children_count'] = $this->convert2english($data['children_count']);
+        $data['staying_duration_day'] = $this->convert2english($data['staying_duration_day']);
+
+        $tags = $data['tags'] ?? [];
+
+
+        if(empty($data['men_count']) || $data['men_count']==0) {
+            $tags[] = "4";
+        }
+
+//        if(empty($group)) {
+//            $this->group->fill($data)->save();
+//            $this->group->tags()->sync($tags);
+//        } else {
             $group->fill($data)->save();
             $group->tags()->sync($tags);
-        }
+//        }
 
 
 //        $group->admins()->sync($tags);

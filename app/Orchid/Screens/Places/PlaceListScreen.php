@@ -43,7 +43,7 @@ class PlaceListScreen extends Screen
         return [
             Link::make('افزودن مکان جدید')
                 ->icon('pencil')
-                ->route('platform.place.edit')
+                ->route('platform.place.new')
         ];
     }
 

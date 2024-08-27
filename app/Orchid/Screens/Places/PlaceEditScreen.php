@@ -61,12 +61,12 @@ class PlaceEditScreen extends Screen
         return [
             Button::make('ایجاد مکان')
                 ->icon('pencil')
-                ->method('createOrUpdate')
+                ->method('create')
                 ->canSee(!$this->place->exists),
 
             Button::make('ویرایش')
                 ->icon('note')
-                ->method('createOrUpdate')
+                ->method('update')
                 ->canSee($this->place->exists),
 
             Button::make('جذف')
@@ -108,7 +108,64 @@ class PlaceEditScreen extends Screen
      *
      * @return RedirectResponse
      */
-    public function createOrUpdate(Place $place, Request $request): RedirectResponse
+    public function create(Request $request): RedirectResponse
+    {
+
+//        var_dump($data);
+//        die();
+
+        $this->validate(request(), [
+            'place.title' => 'required|max:255',
+            'place.description' => 'required|max:2048',
+            'place.address' => 'required|max:512',
+            'place.capacity' => 'required',
+            'place.parking_capacity' => 'required|max:255',
+            'place.shrine_distance' => 'required|max:255',
+//            'place.admins' => 'required|max:255',
+//            'place.map.lat' => 'required|max:255',
+//            'place.map.lng' => 'required|max:255',
+
+        ], [],
+            [
+                'place.title' => 'Title',
+                'place.description'=> 'Description',
+                'place.address'=> 'Address',
+                'place.capacity' => 'Capacity',
+                'place.parking_capacity' => 'Parking Capacity',
+                'place.shrine_distance' => 'Shrine Distance',
+//                'place.admins' => 'admin',
+//                'place.map.lat'=> 'Latitude',
+//                'place.map.lng'=> 'Longitude',
+            ]);
+
+
+        $data = $request->get('place');
+        $data['lat'] = $data['map']['lat'];
+        $data['lng'] = $data['map']['lng'];
+
+//        var_dump($data);
+//        die();
+
+        $this->place->fill($data)->save();
+//        $place->fill($data)->save();
+
+        $tags = $data['tags'];
+        $admins = $data['admins'];
+        $this->place->tags()->sync($tags);
+        $this->place->admins()->sync($admins);
+
+        Alert::info('اطلاعات با موفقیت ذخیره شد');
+
+        return redirect()->route('platform.place.list');
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function update(Place $place, Request $request): RedirectResponse
     {
 
 //        var_dump($data);
@@ -154,7 +211,7 @@ class PlaceEditScreen extends Screen
         $place->tags()->sync($tags);
         $place->admins()->sync($admins);
 
-        Alert::info('You have successfully updated/created the place.');
+        Alert::info('اطلاعات با موفقیت ذخیره شد.');
 
         return redirect()->route('platform.place.list');
     }

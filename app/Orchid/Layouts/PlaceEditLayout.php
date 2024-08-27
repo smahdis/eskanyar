@@ -37,15 +37,15 @@ class PlaceEditLayout extends Rows
             Input::make('place.title')
                 ->required()
                 ->title(__('عنوان'))
-                ->placeholder(__('Place Title'))
+                ->placeholder(__('عنوان مکان'))
                 ->help(__('عنوان مکان')),
 
 
             TextArea::make('place.description')
                 ->rows(3)
                 ->maxlength(255)
-                ->title(__('Description'))
-                ->placeholder(__('Brief description for preview')),
+                ->title(__('توضیحات'))
+                ->placeholder(__('توضیح مختصر از مکان')),
 
             Input::make('place.address')
                 ->required()
@@ -65,20 +65,20 @@ class PlaceEditLayout extends Rows
             Input::make('place.capacity')
                 ->required()
                 ->title(__('ظرفیت'))
-                ->placeholder(__('Capacity')),
+                ->placeholder(__('ظرفیت')),
 //                ->help(__('This will be shown in place detail page')),
 
             Input::make('place.parking_capacity')
                 ->required()
                 ->title(__('ظرفیت پارکینگ'))
-                ->placeholder(__('Parking Capacity')),
+                ->placeholder(__('ظرفیت پارکینگ')),
 //                ->help(__('This will be shown in place detail page')),
 
 
             Input::make('place.shrine_distance')
                 ->required()
                 ->title(__('فاصله تا حرم'))
-                ->placeholder(__('Shrine Distance')),
+                ->placeholder(__('فاصله تا حرم')),
 //                ->help(__('This will be shown in place detail page')),
 
             Relation::make('place.admins.')

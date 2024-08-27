@@ -43,7 +43,7 @@ class PilgrimGroupListScreen extends Screen
         return [
             Link::make('افزودن گروه جدید')
                 ->icon('pencil')
-                ->route('platform.pilgrim.group.edit')
+                ->route('platform.pilgrim.group.new')
         ];
     }
 
