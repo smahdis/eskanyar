@@ -133,7 +133,7 @@ class PilgrimGroupEditScreen extends Screen
             'group.team_leader_lastname' => 'required|max:2048',
             'group.team_leader_phone' => 'required|max:512',
             'group.team_leader_national_code' => 'required',
-            'group.team_leader_birthdate' => 'required|max:255',
+//            'group.team_leader_birthdate' => 'required|max:255',
             'group.transport_method' => 'required|max:255',
 //            'group.companions_count' => 'required|max:255',
             'group.men_count' => 'required|max:255',
@@ -151,7 +151,7 @@ class PilgrimGroupEditScreen extends Screen
                 'group.team_leader_lastname'=> 'نام خانوادگی سرگروه',
                 'group.team_leader_phone'=> 'تلفن تماس سرگروه',
                 'group.team_leader_national_code' => 'کد ملی سرگروه',
-                'group.team_leader_birthdate' => 'تاریخ تولد سرگروه',
+//                'group.team_leader_birthdate' => 'تاریخ تولد سرگروه',
                 'group.transport_method' => 'وسیله مسافرت',
 //                'group.companions_count' => 'تعداد همراهان',
                 'group.men_count' => 'تعداد مردان',
@@ -168,7 +168,7 @@ class PilgrimGroupEditScreen extends Screen
 
         $data['team_leader_phone'] = $this->convert2english($data['team_leader_phone']);
         $data['team_leader_national_code'] = $this->convert2english($data['team_leader_national_code']);
-        $data['team_leader_birthdate'] = $this->convert2english($data['team_leader_birthdate']);
+//        $data['team_leader_birthdate'] = $this->convert2english($data['team_leader_birthdate']);
         $data['men_count'] = $this->convert2english($data['men_count']);
         $data['women_count'] = $this->convert2english($data['women_count']);
         $data['children_count'] = $this->convert2english($data['children_count']);
@@ -212,7 +212,7 @@ class PilgrimGroupEditScreen extends Screen
             'group.team_leader_lastname' => 'required|max:2048',
             'group.team_leader_phone' => 'required|max:512',
             'group.team_leader_national_code' => 'required',
-            'group.team_leader_birthdate' => 'required|max:255',
+//            'group.team_leader_birthdate' => 'required|max:255',
             'group.transport_method' => 'required|max:255',
 //            'group.companions_count' => 'required|max:255',
             'group.men_count' => 'required|max:255',
@@ -230,7 +230,7 @@ class PilgrimGroupEditScreen extends Screen
                 'group.team_leader_lastname'=> 'نام خانوادگی سرگروه',
                 'group.team_leader_phone'=> 'تلفن تماس سرگروه',
                 'group.team_leader_national_code' => 'کد ملی سرگروه',
-                'group.team_leader_birthdate' => 'تاریخ تولد سرگروه',
+//                'group.team_leader_birthdate' => 'تاریخ تولد سرگروه',
                 'group.transport_method' => 'وسیله مسافرت',
 //                'group.companions_count' => 'تعداد همراهان',
                 'group.men_count' => 'تعداد مردان',
@@ -247,7 +247,7 @@ class PilgrimGroupEditScreen extends Screen
 
         $data['team_leader_phone'] = $this->convert2english($data['team_leader_phone']);
         $data['team_leader_national_code'] = $this->convert2english($data['team_leader_national_code']);
-        $data['team_leader_birthdate'] = $this->convert2english($data['team_leader_birthdate']);
+//        $data['team_leader_birthdate'] = $this->convert2english($data['team_leader_birthdate']);
         $data['men_count'] = $this->convert2english($data['men_count']);
         $data['women_count'] = $this->convert2english($data['women_count']);
         $data['children_count'] = $this->convert2english($data['children_count']);

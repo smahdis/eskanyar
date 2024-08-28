@@ -57,10 +57,10 @@ class PilgrimGroupEditLayout extends Rows
                 ->title(__('کدملی سرگروه'))
                 ->placeholder(__('کدملی سرگروه')),
 
-            Input::make('group.team_leader_birthdate')
-                ->required()
-                ->title(__('تاریخ تولد سرگروه'))
-                ->placeholder(__('تاریخ تولد سرگروه')),
+//            Input::make('group.team_leader_birthdate')
+//                ->required()
+//                ->title(__('تاریخ تولد سرگروه'))
+//                ->placeholder(__('تاریخ تولد سرگروه')),
 
 //            ProvinceListener::class,
 
