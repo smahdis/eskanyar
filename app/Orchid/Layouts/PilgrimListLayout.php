@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Layouts;
 
+use App\Models\Pilgrim;
 use App\Models\Place;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
@@ -19,7 +20,7 @@ class PilgrimListLayout extends Table
      *
      * @var string
      */
-    protected $target = 'groups';
+    protected $target = 'pilgrims';
 
     /**
      * Get the table cells to be displayed.
@@ -30,14 +31,18 @@ class PilgrimListLayout extends Table
     {
         return [
 
-            TD::make('title', 'عنوان')
-                ->render(function (Place $model) {
-                    return Link::make($model->title)
-                        ->route('platform.place.edit', $model);
-                }),
+//            TD::make('title', 'عنوان')
+//                ->render(function (Place $model) {
+//                    return Link::make($model->title)
+//                        ->route('platform.place.edit', $model);
+//                }),
 
-            TD::make('capacity', 'ظرفیت'),
-            TD::make('parking_capacity', "ظرفیت پارکینگ"),
+            TD::make('first_name', 'نام'),
+            TD::make('last_name', 'نام خانوادگی'),
+            TD::make('national_code', 'کد ملی'),
+            TD::make('mobile', 'شماره همراه'),
+            TD::make('birthdate', 'تولد'),
+            TD::make('gender', 'جنسیت'),
 
 //            TD::make('Status')
 //                ->alignCenter()
@@ -50,19 +55,19 @@ class PilgrimListLayout extends Table
 
 
             TD::make('created_at', 'ایجاد')
-                ->render(fn (Place $model) => $model->created_at->toDateString()),
+                ->render(fn (Pilgrim $model) => $model->created_at->toDateString()),
 
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
-                ->render(fn (Place $place) => DropDown::make()
+                ->render(fn (Pilgrim $model) => DropDown::make()
                     ->icon('options-vertical')
                     ->list([
                         Button::make(__('Delete'))
                             ->icon('trash')
                             ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
                             ->method('remove', [
-                                'id' => $place->id,
+                                'id' => $model->id,
                             ]),
                     ])),
         ];

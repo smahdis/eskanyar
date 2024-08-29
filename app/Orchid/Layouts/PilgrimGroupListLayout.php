@@ -32,23 +32,40 @@ class PilgrimGroupListLayout extends Table
         return [
 
             TD::make('team_leader_name', 'سرگروه')
-                ->render(function (PilgrimGroup $model) {
-                    return $model->team_leader_name . ' ' . $model->team_leader_lastname;
-                }),
+                ->render(fn (PilgrimGroup $model) =>
+                Link::make($model->team_leader_name . ' ' . $model->team_leader_lastname)
+                    ->route('platform.pilgrim.group.edit', $model->id)
+//                    ->icon('bs.pencil')
+                ),
+
+//                ->render(function (PilgrimGroup $model) {
+//                    return Link::make($model->team_leader_name . ' ' . $model->team_leader_lastname)
+//                        ->route('platform.pilgrim.group.edit', $model->id)
+//                        ->icon('bs.pencil'),
+//                }),
 
 //            TD::make('team_leader_national_code', 'کد ملی'),
             TD::make('team_leader_phone', 'شماره تماس'),
-            TD::make('province.title', 'استان'),
-            TD::make('city.title', 'شهر'),
+            TD::make('province.title', 'استان')
+                ->render(function (PilgrimGroup $model) {
+                return $model->province->title . ' - ' . $model->city->title;
+            }),
+//            TD::make('city.title', 'شهر'),
             TD::make('transport_method', "وسیله")->render(function (PilgrimGroup $model) {
                 $pg = new PilgrimGroup();
                 return $pg->transport_methods[$model->transport_method];
             }),
+
+            TD::make('pilgrims', "اعضا")->render(function (PilgrimGroup $model) {
+                return Link::make('زیر مجموعه ها')
+                    ->route('platform.pilgrim.list', $model->id);
+            }),
+
 //            TD::make('companions_count', "تعداد همراهیان"),
             TD::make('men_count', "آقایان"),
             TD::make('women_count', "خانمها"),
             TD::make('children_count', "کودکان"),
-            TD::make('women_only_group', "گروه زنانه"),
+//            TD::make('women_only_group', "گروه زنانه"),
             TD::make('staying_duration_day', "اقامت")->render(function (PilgrimGroup $model) {
                 return $model->staying_duration_day . ' روز ';
             }),
@@ -58,11 +75,11 @@ class PilgrimGroupListLayout extends Table
 //                ->render(function (Place $model) {
 //                    return $model->named_status;
 //                }),
-            TD::make('companions', 'ویرایش')
-                ->render(fn (PilgrimGroup $model) =>
-                    Link::make(__('Edit'))
-                        ->route('platform.pilgrim.group.edit', $model->id)
-                        ->icon('bs.pencil')),
+//            TD::make('companions', 'ویرایش')
+//                ->render(fn (PilgrimGroup $model) =>
+//                    Link::make(__('Edit'))
+//                        ->route('platform.pilgrim.group.edit', $model->id)
+//                        ->icon('bs.pencil')),
 
             TD::make('created_at', 'ایجاد')
                 ->render(fn (PilgrimGroup $model) => verta($model->created_at->toDateString())->format('Y-m-d')),

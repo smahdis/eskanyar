@@ -16,17 +16,21 @@ class Pilgrim extends Model
      * @var array
      */
     protected $fillable = [
-        'team_leader_name',
-        'team_leader_national_code',
+        'group_id',
+        'first_name',
+        'last_name',
+        'national_code',
+        'mobile',
         'birthdate',
-        'transport_method',
-        'companions_count',
-        'women_count',
+        'gender',
         'tag',
-        'women_only_group',
-        'staying_duration_day',
         'status',
     ];
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 
 
 }
