@@ -8,6 +8,7 @@ use App\Orchid\Layouts\PilgrimGroupListLayout;
 use App\Orchid\Layouts\PilgrimListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class PilgrimGroupListScreen extends Screen
 {
@@ -57,5 +58,23 @@ class PilgrimGroupListScreen extends Screen
         return [
             PilgrimGroupListLayout::class
         ];
+    }
+
+
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function remove($id)
+    {
+//        var_dump($pilgrim->first_name);
+//        die();
+
+        PilgrimGroup::destroy($id);
+        Alert::info('گروه با موفقیت حذف شد');
+
+        return redirect()->route('platform.pilgrim.group.list');
     }
 }

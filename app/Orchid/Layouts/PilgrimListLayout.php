@@ -69,11 +69,11 @@ class PilgrimListLayout extends Table
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->render(fn (Pilgrim $model) => DropDown::make()
-                    ->icon('options-vertical')
+                    ->icon('bs.three-dots-vertical')
                     ->list([
                         Button::make(__('Delete'))
                             ->icon('trash')
-                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->confirm(__('آیا مطمئن به حذف هستید؟ این عملیات غیر قابل بازگشت است'))
                             ->method('remove', [
                                 'id' => $model->id,
                             ]),

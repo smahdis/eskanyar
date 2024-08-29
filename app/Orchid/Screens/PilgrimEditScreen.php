@@ -211,4 +211,22 @@ class PilgrimEditScreen extends Screen
 
         return redirect()->route('platform.pilgrim.list', ["group" =>  $pilgrim->group_id]);
     }
+
+    /**
+     * @param Pilgrim $pilgrim
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function remove($id)
+    {
+//        var_dump($pilgrim->first_name);
+//        die();
+
+        Pilgrim::destroy($id);
+        $group_id = Route::getCurrentRoute()->group;
+        Alert::info('عضو با موفقیت حذف شد');
+
+        return redirect()->route('platform.pilgrim.list', ["group" =>  $group_id]);
+    }
 }

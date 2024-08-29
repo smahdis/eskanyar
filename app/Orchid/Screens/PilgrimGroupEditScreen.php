@@ -2,12 +2,15 @@
 
 namespace App\Orchid\Screens;
 
+use App\Models\Group;
+use App\Models\Pilgrim;
 use App\Models\PilgrimGroup;
 use App\Orchid\Layouts\PilgrimGroupEditLayout;
 use App\Orchid\Layouts\Product\ProductEditLayout;
 use App\Orchid\Layouts\ProvinceListener;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
@@ -272,6 +275,23 @@ class PilgrimGroupEditScreen extends Screen
 //        $group->admins()->sync($tags);
 
         Alert::info('گروه با موفقیت ایجاد شد');
+
+        return redirect()->route('platform.pilgrim.group.list');
+    }
+
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function remove($id)
+    {
+//        var_dump($pilgrim->first_name);
+//        die();
+
+        PilgrimGroup::destroy($id);
+        Alert::info('گروه با موفقیت حذف شد');
 
         return redirect()->route('platform.pilgrim.group.list');
     }
