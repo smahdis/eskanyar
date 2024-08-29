@@ -198,8 +198,8 @@ class PilgrimEditScreen extends Screen
 
         $data = $request->get('pilgrim');
 
-        $data['team_leader_phone'] = $this->convert2english($data['team_leader_phone']);
-        $data['team_leader_national_code'] = $this->convert2english($data['team_leader_national_code']);
+        $data['mobile'] = $this->convert2english($data['mobile']);
+        $data['national_code'] = $this->convert2english($data['national_code']);
 
         $tags = $data['tags'] ?? [];
 

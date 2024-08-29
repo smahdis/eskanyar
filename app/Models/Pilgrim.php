@@ -22,6 +22,7 @@ class Pilgrim extends Model
         'national_code',
         'mobile',
         'birthdate',
+        'age',
         'gender',
         'tag',
         'status',

@@ -116,7 +116,7 @@ Route::screen('pilgrim/groups', PilgrimGroupListScreen::class)->name('platform.p
 Route::screen('pilgrim/group/edit/{group}', PilgrimGroupEditScreen::class)->name('platform.pilgrim.group.edit');
 Route::screen('pilgrim/group/new', PilgrimGroupEditScreen::class)->name('platform.pilgrim.group.new');
 Route::screen('pilgrims/{group?}', PilgrimListScreen::class)->name('platform.pilgrim.list');
-Route::screen('pilgrims/edit/{group?}', PilgrimEditScreen::class)->name('platform.pilgrim.edit');
+Route::screen('pilgrims/edit/{pilgrim?}', PilgrimEditScreen::class)->name('platform.pilgrim.edit');
 Route::screen('pilgrims/{group?}/new', PilgrimEditScreen::class)->name('platform.pilgrim.new');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

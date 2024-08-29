@@ -3,6 +3,7 @@
 namespace App\Orchid\Layouts;
 
 use App\Models\Pilgrim;
+use App\Models\PilgrimGroup;
 use App\Models\Place;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
@@ -37,12 +38,19 @@ class PilgrimListLayout extends Table
 //                        ->route('platform.place.edit', $model);
 //                }),
 
-            TD::make('first_name', 'نام'),
-            TD::make('last_name', 'نام خانوادگی'),
+            TD::make('first_name', 'نام')
+                ->render(fn (Pilgrim $model) =>
+                Link::make($model->first_name . ' ' . $model->last_name)
+                    ->route('platform.pilgrim.edit', $model->id)
+    //                    ->icon('bs.pencil')
+                ),
             TD::make('national_code', 'کد ملی'),
             TD::make('mobile', 'شماره همراه'),
-            TD::make('birthdate', 'تولد'),
-            TD::make('gender', 'جنسیت'),
+            TD::make('age', 'سن'),
+            TD::make('gender', 'جنسیت')
+                ->render(function (Pilgrim $model) {
+                    return $model->gender == 1 ? 'مرد' : 'زن';
+            }),
 
 //            TD::make('Status')
 //                ->alignCenter()

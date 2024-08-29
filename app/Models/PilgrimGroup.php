@@ -47,6 +47,11 @@ class PilgrimGroup extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function members()
+    {
+        return $this->hasMany(Pilgrim::class, 'group_id');
+    }
+
     public function city()
     {
         return $this->belongsTo(ProvinceCity::class);

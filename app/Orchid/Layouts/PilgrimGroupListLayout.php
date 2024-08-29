@@ -57,7 +57,7 @@ class PilgrimGroupListLayout extends Table
             }),
 
             TD::make('pilgrims', "اعضا")->render(function (PilgrimGroup $model) {
-                return Link::make('زیر مجموعه ها')
+                return Link::make(count($model->members) . ' نفر ')
                     ->route('platform.pilgrim.list', $model->id);
             }),
 

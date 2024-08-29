@@ -49,6 +49,12 @@ class PilgrimEditLayout extends Rows
                 ->title(__('شماره تماس'))
                 ->placeholder(__('شماره تماس')),
 
+            Input::make('pilgrim.age')
+//                ->type('number')
+//                ->required()
+                ->title(__('سن'))
+                ->placeholder(__('سن')),
+
             Select::make('pilgrim.gender')
                 ->options([
                     '1'   => 'آقا',
@@ -58,7 +64,7 @@ class PilgrimEditLayout extends Rows
                 ->title('جنسیت,'),
 
 
-            Relation::make('group.tags.')
+            Relation::make('pilgrim.tags.')
                 ->fromModel(Tag::class, 'title')
                 ->multiple()
                 ->title(__('انتخاب تگ')),

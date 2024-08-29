@@ -19,7 +19,7 @@ class PilgrimGroupListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'groups' => PilgrimGroup::with('city')->with('province')->latest()->get()
+            'groups' => PilgrimGroup::with('members')->with('city')->with('province')->latest()->get()
         ];
     }
 
