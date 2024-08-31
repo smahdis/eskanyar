@@ -31,12 +31,13 @@ class SmsListLayout extends Table
     {
         return [
 
-            TD::make('template', 'الگو')
+            TD::make('title', 'عنوان')
                 ->render(function (Sms $model) {
-                    return Link::make($model->template)
+                    return Link::make($model->title)
                         ->route('platform.sms.edit', $model);
                 }),
-//
+
+            TD::make('template', 'الگو'),
             TD::make('contactsList', 'مخاطبین')
                 ->render(function (Sms $model) {
                     return Link::make('مخاطبین')
