@@ -42,7 +42,7 @@ class SmsEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->sms->exists ? 'ویرایش پیامک' : 'ارسال پیامک گروهی جدید';
+        return $this->sms->exists ? 'ویرایش پیامک' : 'ایجاد پیامک گروهی جدید';
     }
 
     /**
@@ -53,7 +53,7 @@ class SmsEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make('ارسال پیامک گروهی')
+            Button::make('ایجاد پیامک گروهی')
                 ->icon('pencil')
                 ->method('create')
                 ->canSee(!$this->sms->exists),
@@ -122,12 +122,14 @@ class SmsEditScreen extends Screen
             'sms.title' => 'required|max:255',
             'sms.template' => 'required|max:255',
             'sms.contacts' => 'required',
+            'sms.token1' => 'required',
 
         ], [],
             [
                 'sms.title' => 'عنوان',
                 'sms.template' => 'الگو',
                 'sms.contacts' => 'مخاطبین',
+                'sms.token1' => 'توکن 1',
             ]);
 
         $data = $request->get('sms');
@@ -165,12 +167,14 @@ class SmsEditScreen extends Screen
             'sms.title' => 'required|max:255',
             'sms.template' => 'required|max:255',
             'sms.contacts' => 'required',
+            'sms.token1' => 'required',
 
         ], [],
             [
                 'sms.title' => 'عنوان',
                 'sms.template' => 'الگو',
                 'sms.contacts' => 'مخاطبین',
+                'sms.token1' => 'توکن 1',
             ]);
 
         $data = $request->get('sms');

@@ -58,11 +58,9 @@ class SmsEditLayout extends Rows
                 ->title(__('توکن 1')),
 
             Input::make('sms.token2')
-                ->required()
                 ->title(__('توکن 2')),
 
             Input::make('sms.token3')
-                ->required()
                 ->title(__('توکن 3')),
 
         ];
