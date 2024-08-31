@@ -21,6 +21,9 @@ use App\Orchid\Screens\Places\PlaceListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\SmsEditScreen;
+use App\Orchid\Screens\SmsItemListScreen;
+use App\Orchid\Screens\SmsListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -118,5 +121,11 @@ Route::screen('pilgrim/group/new', PilgrimGroupEditScreen::class)->name('platfor
 Route::screen('pilgrims/{group?}', PilgrimListScreen::class)->name('platform.pilgrim.list');
 Route::screen('pilgrims/edit/{pilgrim?}', PilgrimEditScreen::class)->name('platform.pilgrim.edit');
 Route::screen('pilgrims/{group?}/new', PilgrimEditScreen::class)->name('platform.pilgrim.new');
+
+Route::screen('sms', SmsListScreen::class)->name('platform.sms.list');
+Route::screen('sms/edit/{sms}', SmsEditScreen::class)->name('platform.sms.edit');
+Route::screen('sms/new', SmsEditScreen::class)->name('platform.sms.new');
+
+Route::screen('sms/{sms_id}/items', SmsItemListScreen::class)->name('platform.sms.items.list');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

@@ -46,6 +46,12 @@ class PlatformProvider extends OrchidServiceProvider
 //                ->title('زائرین')
                 ->route('platform.pilgrim.group.list'),
 
+            Menu::make('پیامک')
+                ->icon('bs.book')
+                ->permission(['see_pilgrim_groups'])
+                ->title('پیامک')
+                ->route('platform.sms.list'),
+
 //            Menu::make('Get Started')
 //                ->icon('bs.book')
 //                ->title('Navigation')
