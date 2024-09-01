@@ -46,6 +46,11 @@ class PlaceListLayout extends Table
 //                    return $model->named_status;
 //                }),
 
+//            TD::make('pilgrims', 'لیست زائرین')
+//                ->render(function (Place $model) {
+//                    return Link::make($model->title)
+//                        ->route('platform.place.edit', $model);
+//                }),
 
             TD::make('created_at', 'ایجاد')
                 ->render(fn (Place $model) => $model->created_at->toDateString()),

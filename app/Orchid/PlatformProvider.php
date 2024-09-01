@@ -49,6 +49,7 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('پیامک')
                 ->icon('bs.book')
                 ->permission(['see_pilgrim_groups'])
+                ->permission(['super_admin'])
                 ->title('پیامک')
                 ->route('platform.sms.list'),
 
@@ -83,18 +84,18 @@ class PlatformProvider extends OrchidServiceProvider
 //                ->icon('bs.card-text')
 //                ->route('platform.example.cards')
 //                ->divider(),
-//
-//            Menu::make(__('Users'))
-//                ->icon('bs.people')
-//                ->route('platform.systems.users')
-//                ->permission('platform.systems.users')
-//                ->title(__('Access Controls')),
-//
-//            Menu::make(__('Roles'))
-//                ->icon('bs.shield')
-//                ->route('platform.systems.roles')
-//                ->permission('platform.systems.roles')
-//                ->divider(),
+
+            Menu::make(__('Users'))
+                ->icon('bs.people')
+                ->route('platform.systems.users')
+                ->permission('platform.systems.users')
+                ->title(__('کاربران و نقش ها')),
+
+            Menu::make(__('Roles'))
+                ->icon('bs.shield')
+                ->route('platform.systems.roles')
+                ->permission('platform.systems.roles')
+                ->divider(),
 //
 //            Menu::make('Documentation')
 //                ->title('Docs')

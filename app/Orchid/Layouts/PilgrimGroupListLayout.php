@@ -2,11 +2,13 @@
 
 namespace App\Orchid\Layouts;
 
+use App\Models\Pilgrim;
 use App\Models\PilgrimGroup;
 use App\Models\Place;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -51,10 +53,10 @@ class PilgrimGroupListLayout extends Table
                 return $model->province->title . ' - ' . $model->city->title;
             }),
 //            TD::make('city.title', 'شهر'),
-            TD::make('transport_method', "وسیله")->render(function (PilgrimGroup $model) {
-                $pg = new PilgrimGroup();
-                return $pg->transport_methods[$model->transport_method];
-            }),
+//            TD::make('transport_method', "وسیله")->render(function (PilgrimGroup $model) {
+//                $pg = new PilgrimGroup();
+//                return $pg->transport_methods[$model->transport_method];
+//            }),
 
             TD::make('pilgrims', "اعضا")->render(function (PilgrimGroup $model) {
                 return Link::make(count($model->members) . ' نفر ')
@@ -66,9 +68,13 @@ class PilgrimGroupListLayout extends Table
             TD::make('women_count', "خانمها"),
             TD::make('children_count', "کودکان"),
 //            TD::make('women_only_group', "گروه زنانه"),
-            TD::make('staying_duration_day', "اقامت")->render(function (PilgrimGroup $model) {
-                return $model->staying_duration_day . ' روز ';
+//            TD::make('staying_duration_day', "اقامت")->render(function (PilgrimGroup $model) {
+//                return $model->staying_duration_day . ' روز ';
+//            }),
+            TD::make('staying_duration_day', "اقامتگاه")->render(function (PilgrimGroup $model) {
+                return '<span class="label label-primary">' . $model->place_title . '</span>';
             }),
+
 
 //            TD::make('Status')
 //                ->alignCenter()
@@ -81,8 +87,23 @@ class PilgrimGroupListLayout extends Table
 //                        ->route('platform.pilgrim.group.edit', $model->id)
 //                        ->icon('bs.pencil')),
 
-            TD::make('created_at', 'ایجاد')
-                ->render(fn (PilgrimGroup $model) => verta($model->created_at->toDateString())->format('Y-m-d')),
+//            TD::make('created_at', 'ایجاد')
+//                ->render(fn (PilgrimGroup $model) => verta($model->created_at->toDateString())->format('Y-m-d')),
+
+            TD::make(__('تخصیص به'))
+                ->align(TD::ALIGN_CENTER)
+                ->width('100px')
+                ->render(fn (PilgrimGroup $model) => DropDown::make()
+                    ->icon('bs.three-dots-vertical')
+                    ->list([
+                        Button::make(__('تخصیص به مدرسه خویی'))
+//                            ->icon('')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('assign', [
+                                'group_id' => $model->id,
+                                'place_id' => 1,
+                            ]),
+                    ])),
 
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)

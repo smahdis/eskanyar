@@ -66,4 +66,9 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
+    public function places()
+    {
+        return $this->belongsToMany(Place::class);
+    }
 }

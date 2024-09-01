@@ -8,6 +8,7 @@ use App\Models\Place;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -51,6 +52,8 @@ class PilgrimListLayout extends Table
                 ->render(function (Pilgrim $model) {
                     return $model->gender == 1 ? 'مرد' : 'زن';
             }),
+
+
 
 //            TD::make('Status')
 //                ->alignCenter()

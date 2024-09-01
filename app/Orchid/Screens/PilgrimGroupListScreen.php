@@ -6,6 +6,7 @@ use App\Models\PilgrimGroup;
 use App\Models\Place;
 use App\Orchid\Layouts\PilgrimGroupListLayout;
 use App\Orchid\Layouts\PilgrimListLayout;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
@@ -19,8 +20,23 @@ class PilgrimGroupListScreen extends Screen
      */
     public function query(): iterable
     {
+        $super_admin = Auth::user()->hasAccess('super_admin');
+
+//        var_dump($super_admin);
+//        die();
+
+        if($super_admin) {
+            $grs = PilgrimGroup::with('members')->with('city')->with('province')->latest()->get();
+        } else {
+
+            $grs = PilgrimGroup::
+            join('place_user', 'place_user.place_id', '=', 'pilgrim_groups.place_id')
+                ->where('place_user.user_id', Auth::user()->id)
+                ->with('members')->with('city')->with('province')->latest()->get();
+        }
+
         return [
-            'groups' => PilgrimGroup::with('members')->with('city')->with('province')->latest()->get()
+            'groups' => $grs
         ];
     }
 
@@ -60,6 +76,19 @@ class PilgrimGroupListScreen extends Screen
         ];
     }
 
+
+    public function assign($group_id, $place_id)
+    {
+
+        $group = PilgrimGroup::where('id', $group_id)->first();
+        $place = Place::where('id', $place_id)->first();
+        $group->place_id = $place_id;
+        $group->place_title = $place->title;
+        $group->save();
+//        Alert::info('گروه با موفقیت حذف شد');
+
+        return redirect()->back();
+    }
 
     /**
      * @param $id

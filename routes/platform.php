@@ -127,5 +127,6 @@ Route::screen('sms/edit/{sms}', SmsEditScreen::class)->name('platform.sms.edit')
 Route::screen('sms/new', SmsEditScreen::class)->name('platform.sms.new');
 
 Route::screen('sms/{sms_id}/items', SmsItemListScreen::class)->name('platform.sms.items.list');
+Route::screen('sms/{sms_id}/items', SmsItemListScreen::class)->name('platform.sms.items.list');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

@@ -38,7 +38,7 @@ class Place extends Model
 
     public function admins()
     {
-        return $this->belongsToMany(User::class, 'place_admin');
+        return $this->belongsToMany(User::class, 'place_user');
     }
 
 

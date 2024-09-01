@@ -3,9 +3,11 @@
 namespace App\Orchid\Screens\Places;
 
 use App\Models\Icebreaker;
+use App\Models\PilgrimGroup;
 use App\Models\Place;
 use App\Orchid\Layouts\EventListLayout;
 use App\Orchid\Layouts\PlaceListLayout;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
@@ -18,8 +20,19 @@ class PlaceListScreen extends Screen
      */
     public function query(): iterable
     {
+        $super_admin = Auth::user()->hasAccess('super_admin');
+
+        if($super_admin) {
+            $places = Place::latest()->get();
+        } else {
+            $places = Place::
+            join('place_user', 'place_user.place_id', '=', 'places.id')
+                ->where('place_user.user_id', Auth::user()->id)
+                ->latest()->get();
+        }
+
         return [
-            'places' => Place::latest()->get()
+            'places' => $places
         ];
     }
 

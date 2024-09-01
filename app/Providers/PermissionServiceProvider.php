@@ -22,6 +22,7 @@ class PermissionServiceProvider extends ServiceProvider
     public function boot(Dashboard $dashboard)
     {
         $permissions = ItemPermission::group('زائرسرا')
+            ->addPermission('super_admin', 'ادمین اصلی')
             ->addPermission('see_pilgrim_groups', 'نمایش گروهها')
             ->addPermission('edit_pilgrim_groups', 'ویرایش گروه ها')
             ->addPermission('see_places', 'نمایش اسکان')
