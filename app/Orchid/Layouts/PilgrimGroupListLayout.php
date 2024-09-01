@@ -96,6 +96,7 @@ class PilgrimGroupListLayout extends Table
                 ->render(fn (PilgrimGroup $model) => DropDown::make()
                     ->icon('bs.three-dots-vertical')
                     ->list([
+
                         Button::make(__('تخصیص به مدرسه خویی'))
 //                            ->icon('')
 //                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
@@ -103,6 +104,23 @@ class PilgrimGroupListLayout extends Table
                                 'group_id' => $model->id,
                                 'place_id' => 1,
                             ]),
+
+                        Button::make(__('تخصیص به قرنی'))
+//                            ->icon('')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('assign', [
+                                'group_id' => $model->id,
+                                'place_id' => 2,
+                            ]),
+
+                        Button::make(__('تخصیص به عبادی'))
+//                            ->icon('')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('assign', [
+                                'group_id' => $model->id,
+                                'place_id' => 3,
+                            ]),
+
                     ])),
 
             TD::make(__('Actions'))

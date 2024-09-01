@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
 class Pilgrim extends Model
 {
-    use HasFactory, AsSource;
+    use HasFactory, Filterable, AsSource;
 
     /**
      * The attributes that are mass assignable.

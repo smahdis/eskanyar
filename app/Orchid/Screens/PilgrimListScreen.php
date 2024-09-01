@@ -4,6 +4,8 @@ namespace App\Orchid\Screens;
 
 use App\Models\Pilgrim;
 use App\Models\PilgrimGroup;
+use App\Orchid\Layouts\PilgrimFiltersLayout;
+use App\Orchid\Layouts\PilgrimGroupFiltersLayout;
 use App\Orchid\Layouts\PilgrimListLayout;
 use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Actions\Link;
@@ -22,7 +24,7 @@ class PilgrimListScreen extends Screen
         $group_id = Route::getCurrentRoute()->group;
 
         return [
-            'pilgrims' => Pilgrim::where('group_id', $group_id)->latest()->paginate()
+            'pilgrims' => Pilgrim::filters(PilgrimFiltersLayout::class)->where('group_id', $group_id)->latest()->paginate()
         ];
     }
 
@@ -59,6 +61,7 @@ class PilgrimListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            PilgrimFiltersLayout::class,
             PilgrimListLayout::class
         ];
     }

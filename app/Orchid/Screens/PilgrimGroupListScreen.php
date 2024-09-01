@@ -4,6 +4,8 @@ namespace App\Orchid\Screens;
 
 use App\Models\PilgrimGroup;
 use App\Models\Place;
+use App\Orchid\Layouts\ParticipatorFiltersLayout;
+use App\Orchid\Layouts\PilgrimGroupFiltersLayout;
 use App\Orchid\Layouts\PilgrimGroupListLayout;
 use App\Orchid\Layouts\PilgrimListLayout;
 use Illuminate\Support\Facades\Auth;
@@ -26,13 +28,13 @@ class PilgrimGroupListScreen extends Screen
 //        die();
 
         if($super_admin) {
-            $grs = PilgrimGroup::with('members')->with('city')->with('province')->latest()->get();
+            $grs = PilgrimGroup::filters(PilgrimGroupFiltersLayout::class)->with('members')->with('city')->with('province')->latest()->paginate();
         } else {
 
-            $grs = PilgrimGroup::
-            join('place_user', 'place_user.place_id', '=', 'pilgrim_groups.place_id')
+            $grs = PilgrimGroup::filters(PilgrimGroupFiltersLayout::class)
+                ->join('place_user', 'place_user.place_id', '=', 'pilgrim_groups.place_id')
                 ->where('place_user.user_id', Auth::user()->id)
-                ->with('members')->with('city')->with('province')->latest()->get();
+                ->with('members')->with('city')->with('province')->latest()->paginate();
         }
 
         return [
@@ -72,6 +74,7 @@ class PilgrimGroupListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            PilgrimGroupFiltersLayout::class,
             PilgrimGroupListLayout::class
         ];
     }
