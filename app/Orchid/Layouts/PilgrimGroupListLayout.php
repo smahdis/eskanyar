@@ -50,7 +50,7 @@ class PilgrimGroupListLayout extends Table
             TD::make('team_leader_phone', 'شماره تماس'),
             TD::make('province.title', 'استان')
                 ->render(function (PilgrimGroup $model) {
-                return $model->province->title . ' - ' . $model->city->title;
+                return (isset($model->province) ? $model->province->title . ' - ' . $model->city->title : "");
             }),
 //            TD::make('city.title', 'شهر'),
 //            TD::make('transport_method', "وسیله")->render(function (PilgrimGroup $model) {
