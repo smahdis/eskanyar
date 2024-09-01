@@ -53,7 +53,7 @@ class PilgrimGroupFilter extends Filter
         }
 
         if($this->request->get('place_id')) {
-            $builder = $builder->where('place_id', $this->request->get('place_id'));
+            $builder = $builder->where('pilgrim_groups.place_id', $this->request->get('place_id'));
         }
 
 //        if($this->request->get('status')) {
