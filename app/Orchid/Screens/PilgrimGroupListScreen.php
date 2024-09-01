@@ -32,10 +32,34 @@ class PilgrimGroupListScreen extends Screen
         } else {
 
             $grs = PilgrimGroup::filters(PilgrimGroupFiltersLayout::class)
+                ->select(
+                    'pilgrim_groups.id',
+                    'pilgrim_groups.place_id',
+                    'pilgrim_groups.place_title',
+                    'pilgrim_groups.team_leader_name',
+                    'pilgrim_groups.team_leader_lastname',
+                    'pilgrim_groups.team_leader_phone',
+                    'pilgrim_groups.team_leader_national_code',
+                    'pilgrim_groups.team_leader_birthdate',
+                    'pilgrim_groups.province_id',
+                    'pilgrim_groups.city_id',
+                    'pilgrim_groups.transport_method',
+                    'pilgrim_groups.companions_count',
+                    'pilgrim_groups.men_count',
+                    'pilgrim_groups.women_count',
+                    'pilgrim_groups.children_count',
+                    'pilgrim_groups.women_only_group',
+                    'pilgrim_groups.tag',
+                    'pilgrim_groups.staying_duration_day',
+                    'pilgrim_groups.status',
+                )
                 ->join('place_user', 'place_user.place_id', '=', 'pilgrim_groups.place_id')
                 ->where('place_user.user_id', Auth::user()->id)
                 ->with('members')->with('city')->with('province')->latest()->paginate();
         }
+
+//        var_dump(json_encode($grs));
+//        die();
 
         return [
             'groups' => $grs
