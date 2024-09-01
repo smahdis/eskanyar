@@ -5,6 +5,7 @@ namespace App\Orchid\Filters;
 use App\Models\Invitee;
 use App\Models\Participator;
 use App\Models\PilgrimGroup;
+use App\Models\Place;
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
@@ -12,7 +13,7 @@ use Orchid\Screen\Fields\Select;
 
 class PilgrimGroupFilter extends Filter
 {
-    public $parameters = ['team_leader_lastname', 'team_leader_phone'];
+    public $parameters = ['team_leader_lastname', 'team_leader_phone', 'place_id'];
 
     /**
      * The displayable name of the filter.
@@ -31,7 +32,7 @@ class PilgrimGroupFilter extends Filter
      */
     public function parameters(): ?array
     {
-        return ['team_leader_lastname', 'team_leader_phone'];
+        return ['team_leader_lastname', 'team_leader_phone', 'place_id'];
     }
 
     /**
@@ -49,6 +50,10 @@ class PilgrimGroupFilter extends Filter
 
         if($this->request->get('team_leader_phone')) {
             $builder = $builder->where('team_leader_phone', $this->request->get('team_leader_phone'));
+        }
+
+        if($this->request->get('place_id')) {
+            $builder = $builder->where('place_id', $this->request->get('place_id'));
         }
 
 //        if($this->request->get('status')) {
@@ -79,6 +84,12 @@ class PilgrimGroupFilter extends Filter
                       ->empty()
                       ->value($this->request->get('team_leader_phone'))
                       ->title(__('شماره تماس')),
+
+                  Select::make('place_id')
+                      ->fromModel(Place::class, 'title','id')
+                      ->empty()
+                      ->value($this->request->get('place_id'))
+                      ->title(__('اسکان یا اقامتگاه')),
 
 //                  Select::make('email')
 //                      ->fromModel(Participator::class, 'email', 'email')
