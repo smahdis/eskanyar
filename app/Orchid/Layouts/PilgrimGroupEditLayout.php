@@ -71,7 +71,7 @@ class PilgrimGroupEditLayout extends Rows
 
 
             Input::make('group.staying_duration_day')
-                ->required()
+//                ->required()
                 ->title(__('مدت اقامت'))
                 ->placeholder(__('مدت اقامت')),
 
@@ -92,17 +92,17 @@ class PilgrimGroupEditLayout extends Rows
 //                ->placeholder(__('تعداد همراهیان')),
 
             Input::make('group.men_count')
-                ->required()
+//                ->required()
                 ->title(__('تعداد مردان گروه'))
                 ->help(__('تعداد مردان گروه')),
 
             Input::make('group.women_count')
-                ->required()
+//                ->required()
                 ->title(__('تعداد خانم های گروه'))
                 ->help(__('تعداد خانم های گروه')),
 
             Input::make('group.children_count')
-                ->required()
+//                ->required()
                 ->title(__('تعداد کودکان زیر ۵ سال'))
                 ->help(__('تعداد کودکان زیر ۵ سال')),
 
