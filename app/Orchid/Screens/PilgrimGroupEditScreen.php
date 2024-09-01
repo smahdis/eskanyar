@@ -172,10 +172,10 @@ class PilgrimGroupEditScreen extends Screen
         $data['team_leader_phone'] = $this->convert2english($data['team_leader_phone']);
         $data['team_leader_national_code'] = $this->convert2english($data['team_leader_national_code']);
 //        $data['team_leader_birthdate'] = $this->convert2english($data['team_leader_birthdate']);
-        $data['men_count'] = $this->convert2english($data['men_count']);
-        $data['women_count'] = $this->convert2english($data['women_count']);
-        $data['children_count'] = $this->convert2english($data['children_count']);
-        $data['staying_duration_day'] = $this->convert2english($data['staying_duration_day']);
+//        $data['men_count'] = $this->convert2english($data['men_count']);
+//        $data['women_count'] = $this->convert2english($data['women_count']);
+//        $data['children_count'] = $this->convert2english($data['children_count']);
+//        $data['staying_duration_day'] = $this->convert2english($data['staying_duration_day']);
 
         $tags = $data['tags'] ?? [];
 
@@ -251,10 +251,10 @@ class PilgrimGroupEditScreen extends Screen
         $data['team_leader_phone'] = $this->convert2english($data['team_leader_phone']);
         $data['team_leader_national_code'] = $this->convert2english($data['team_leader_national_code']);
 //        $data['team_leader_birthdate'] = $this->convert2english($data['team_leader_birthdate']);
-        $data['men_count'] = $this->convert2english($data['men_count']);
-        $data['women_count'] = $this->convert2english($data['women_count']);
-        $data['children_count'] = $this->convert2english($data['children_count']);
-        $data['staying_duration_day'] = $this->convert2english($data['staying_duration_day']);
+//        $data['men_count'] = $this->convert2english($data['men_count']);
+//        $data['women_count'] = $this->convert2english($data['women_count']);
+//        $data['children_count'] = $this->convert2english($data['children_count']);
+//        $data['staying_duration_day'] = $this->convert2english($data['staying_duration_day']);
 
         $tags = $data['tags'] ?? [];
 
