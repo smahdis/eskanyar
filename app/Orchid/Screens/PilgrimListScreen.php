@@ -7,6 +7,7 @@ use App\Models\PilgrimGroup;
 use App\Orchid\Layouts\PilgrimFiltersLayout;
 use App\Orchid\Layouts\PilgrimGroupFiltersLayout;
 use App\Orchid\Layouts\PilgrimListLayout;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -65,6 +66,16 @@ class PilgrimListScreen extends Screen
             PilgrimListLayout::class
         ];
     }
+
+    public function submitExit($id, $status)
+    {
+
+//        $group = PilgrimGroup::where('id', $group_id)->first();
+        DB::table('pilgrims')->where('id', $id)->update(array('status' => $status));
+
+        return redirect()->back();
+    }
+
 
     /**
      * @param Pilgrim $pilgrim

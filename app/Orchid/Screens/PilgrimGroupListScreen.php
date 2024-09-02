@@ -9,6 +9,7 @@ use App\Orchid\Layouts\PilgrimGroupFiltersLayout;
 use App\Orchid\Layouts\PilgrimGroupListLayout;
 use App\Orchid\Layouts\PilgrimListLayout;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
@@ -115,6 +116,17 @@ class PilgrimGroupListScreen extends Screen
 //        Alert::info('گروه با موفقیت حذف شد');
 
         return redirect()->back();
+    }
+
+    public function submitExit($group_id, $status)
+    {
+
+//        $group = PilgrimGroup::where('id', $group_id)->first();
+        DB::table('pilgrims')->where('group_id', $group_id)->update(array('status' => $status));
+
+//        Alert::info('گروه با موفقیت حذف شد');
+
+        return redirect()->route('platform.pilgrim.list', ['group' => $group_id]);
     }
 
     /**

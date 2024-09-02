@@ -47,7 +47,9 @@ class PilgrimListLayout extends Table
                 ),
             TD::make('national_code', 'کد ملی'),
             TD::make('mobile', 'شماره همراه'),
-            TD::make('age', 'سن'),
+            TD::make('status', 'وضعیت')->render(function (Pilgrim $model) {
+                return  $model->status == 1 ? '<span class="label label-primary"> ثبت سیستم </span>' : '<span class="label label-secondary">خروج</span>';
+            }),
             TD::make('gender', 'جنسیت')
                 ->render(function (Pilgrim $model) {
                     return $model->gender == 1 ? 'مرد' : 'زن';
@@ -74,6 +76,20 @@ class PilgrimListLayout extends Table
                 ->render(fn (Pilgrim $model) => DropDown::make()
                     ->icon('bs.three-dots-vertical')
                     ->list([
+                        Button::make(__('ثبت خروج'))
+                            ->icon('bs.box-arrow-right')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('submitExit', [
+                                'id' => $model->id,
+                                'status' => 2
+                            ]),
+                        Button::make(__('تبدیل وضعیت به ثبت سیستم'))
+                            ->icon('bs.box-arrow-right')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('submitExit', [
+                                'id' => $model->id,
+                                'status' => 1
+                            ]),
                         Button::make(__('Delete'))
                             ->icon('trash')
                             ->confirm(__('آیا مطمئن به حذف هستید؟ این عملیات غیر قابل بازگشت است'))

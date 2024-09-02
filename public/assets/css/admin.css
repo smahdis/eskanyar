@@ -62,3 +62,26 @@
 html, body, * {
     font-family: "Vazir", "Roboto", Helvetica, Arial, sans-serif !important;
 }
+
+.label-secondary {
+    color: #fff;
+    background-color: #940518;
+}
+
+.label-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.label {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    min-width: 60px;
+}

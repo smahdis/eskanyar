@@ -72,7 +72,7 @@ class PilgrimGroupListLayout extends Table
 //                return $model->staying_duration_day . ' روز ';
 //            }),
             TD::make('staying_duration_day', "اقامتگاه")->render(function (PilgrimGroup $model) {
-                return '<span class="label label-primary">' . $model->place_title . '</span>';
+                return $model->place_title ? '<span class="label label-primary">' . $model->place_title . '</span>' : "";
             }),
 
 
@@ -129,6 +129,20 @@ class PilgrimGroupListLayout extends Table
                 ->render(fn (PilgrimGroup $model) => DropDown::make()
                     ->icon('bs.three-dots-vertical')
                     ->list([
+                        Button::make(__('ثبت خروج'))
+                            ->icon('bs.box-arrow-right')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('submitExit', [
+                                'group_id' => $model->id,
+                                'status' => 2
+                            ]),
+                        Button::make(__('تبدیل وضعیت به ثبت سیستم'))
+                            ->icon('bs.box-arrow-right')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('submitExit', [
+                                'group_id' => $model->id,
+                                'status' => 1
+                            ]),
                         Button::make(__('Delete'))
                             ->icon('trash')
                             ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
