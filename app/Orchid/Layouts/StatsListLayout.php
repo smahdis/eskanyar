@@ -39,8 +39,17 @@ class StatsListLayout extends Table
                     return $t;
                 }),
                 TD::make('status', "وضعیت")->render(function (Pilgrim $model) {
-                    $t = $model->status == 1 ? '<span class="label label-primary"> ثبت سیستم </span>' : '<span class="label label-secondary">خروج</span>';
-                    return $t;
+//                    $t = $model->status == 1 ? '<span class="label label-primary"> ثبت سیستم </span>' : '<span class="label label-secondary">خروج</span>';
+//                    return $t;
+                    $t = "";
+                    if($model->status == 1) {
+                        $t = '<span class="label label-primary"> ثبت سیستم </span>';
+                    } elseif($model->status == 2) {
+                        $t = '<span class="label label-primary">خروج از اسکان</span>';
+                    } elseif($model->status == 3) {
+                        $t = '<span class="label label-primary"> ورود به اسکان </span>';
+                    }
+                    return  $t;
                 }),
                 TD::make('pilgrims', "تعداد"),
 

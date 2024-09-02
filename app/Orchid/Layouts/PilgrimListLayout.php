@@ -48,7 +48,16 @@ class PilgrimListLayout extends Table
             TD::make('national_code', 'کد ملی'),
             TD::make('mobile', 'شماره همراه'),
             TD::make('status', 'وضعیت')->render(function (Pilgrim $model) {
-                return  $model->status == 1 ? '<span class="label label-primary"> ثبت سیستم </span>' : '<span class="label label-secondary">خروج</span>';
+//                $t = $model->status == 1 ? '<span class="label label-primary"> ثبت سیستم </span>' : '<span class="label label-secondary">خروج</span>';
+                $t = "";
+                if($model->status == 1) {
+                    $t = '<span class="label label-primary"> ثبت سیستم </span>';
+                } elseif($model->status == 2) {
+                    $t = '<span class="label label-primary">خروج</span>';
+                } elseif($model->status == 3) {
+                    $t = '<span class="label label-primary"> ورود به اسکان </span>';
+                }
+                return  $t;
             }),
             TD::make('gender', 'جنسیت')
                 ->render(function (Pilgrim $model) {
@@ -82,6 +91,13 @@ class PilgrimListLayout extends Table
                             ->method('submitExit', [
                                 'id' => $model->id,
                                 'status' => 2
+                            ]),
+                        Button::make(__('ثبت ورود'))
+                            ->icon('bs.box-arrow-right')
+//                            ->confirm(__('Once the event is deleted, all of its resources and data will be permanently deleted.'))
+                            ->method('submitExit', [
+                                'id' => $model->id,
+                                'status' => 3
                             ]),
                         Button::make(__('تبدیل وضعیت به ثبت سیستم'))
                             ->icon('bs.box-arrow-right')
