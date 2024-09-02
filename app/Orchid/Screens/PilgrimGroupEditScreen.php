@@ -5,11 +5,14 @@ namespace App\Orchid\Screens;
 use App\Models\Group;
 use App\Models\Pilgrim;
 use App\Models\PilgrimGroup;
+use App\Models\Place;
+use App\Models\PlaceUser;
 use App\Orchid\Layouts\PilgrimGroupEditLayout;
 use App\Orchid\Layouts\Product\ProductEditLayout;
 use App\Orchid\Layouts\ProvinceListener;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
@@ -179,6 +182,15 @@ class PilgrimGroupEditScreen extends Screen
 
         $tags = $data['tags'] ?? [];
 
+        $super_admin = Auth::user()->hasAccess('super_admin');
+        if(!$super_admin) {
+            $places_this_user_is_admin = PlaceUser::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->first();
+            $place = Place::where('id', $places_this_user_is_admin->place_id)->first();
+            var_dump(json_encode($place));
+
+            $data['place_id'] = $places_this_user_is_admin->place_id;
+            $data['place_title'] = $place->title;
+        }
 
         if(empty($data['men_count']) || $data['men_count']==0) {
             $tags[] = "4";

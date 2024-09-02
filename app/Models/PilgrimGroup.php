@@ -24,6 +24,8 @@ class PilgrimGroup extends Model
         'team_leader_birthdate',
         'province_id',
         'city_id',
+        'place_id',
+        'place_title',
         'transport_method',
         'companions_count',
         'men_count',

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsMultiSource;
 
-class PlaceAdmin extends Model
+class PlaceUser extends Model
 {
     use HasFactory, AsMultiSource;
-
+    protected $table = 'place_user';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
