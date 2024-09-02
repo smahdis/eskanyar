@@ -37,6 +37,10 @@ class StatsListLayout extends Table
                     $t = $model->gender == 1 ? "آقا" : "خانم";
                     return $t;
                 }),
+                TD::make('status', "وضعیت")->render(function (Pilgrim $model) {
+                    $t = $model->status == 1 ? '<span class="label label-primary"> ثبت سیستم </span>' : '<span class="label label-secondary">خروج</span>';
+                    return $t;
+                }),
                 TD::make('pilgrims', "تعداد"),
 
         ];

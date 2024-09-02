@@ -36,10 +36,10 @@ class PlaceListScreen extends Screen
 //        DB::enableQueryLog();
 
         $stats = Pilgrim::
-            select('places.id','places.title','gender', DB::raw('COUNT(*) as pilgrims'))
+            select('places.id','places.title','gender', 'pilgrims.status', DB::raw('COUNT(*) as pilgrims'))
             ->join('pilgrim_groups', 'pilgrim_groups.id', '=', 'pilgrims.group_id')
             ->join('places', 'places.id', '=', 'pilgrim_groups.place_id')
-            ->groupBy(['places.id', 'gender'])->get();
+            ->groupBy(['places.id', 'gender', 'pilgrims.status'])->get();
 //        dd(DB::getQueryLog());
 
 //        var_dump(json_encode($stats));
