@@ -22,6 +22,7 @@ class StatsListLayout extends Table
      * @var string
      */
     protected $target = 'stats';
+    protected $title = 'آمار ورودی و خروجی';
 
     /**
      * Get the table cells to be displayed.

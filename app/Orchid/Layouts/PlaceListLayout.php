@@ -21,7 +21,7 @@ class PlaceListLayout extends Table
      * @var string
      */
     protected $target = 'places';
-
+    protected $title = 'لیست اسکان ها';
     /**
      * Get the table cells to be displayed.
      *
