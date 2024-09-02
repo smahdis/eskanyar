@@ -186,7 +186,7 @@ class PilgrimGroupEditScreen extends Screen
         if(!$super_admin) {
             $places_this_user_is_admin = PlaceUser::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->first();
             $place = Place::where('id', $places_this_user_is_admin->place_id)->first();
-            var_dump(json_encode($place));
+//            var_dump(json_encode($place));
 
             $data['place_id'] = $places_this_user_is_admin->place_id;
             $data['place_title'] = $place->title;
