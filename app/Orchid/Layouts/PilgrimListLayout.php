@@ -55,7 +55,7 @@ class PilgrimListLayout extends Table
                 } elseif($model->status == 2) {
                     $t = '<span class="label label-primary">خروج</span>';
                 } elseif($model->status == 3) {
-                    $t = '<span class="label label-primary"> ورود به اسکان </span>';
+                    $t = '<span class="label label-success"> ورود به اسکان </span>';
                 }
                 return  $t;
             }),

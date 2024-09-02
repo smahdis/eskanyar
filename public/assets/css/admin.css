@@ -73,6 +73,11 @@ html, body, * {
     background-color: #007bff;
 }
 
+.label-success {
+    color: #fff;
+    background-color: #3f7a00;
+}
+
 .label {
     display: inline-block;
     padding: .25em .4em;
