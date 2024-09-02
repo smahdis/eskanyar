@@ -3,11 +3,14 @@
 namespace App\Orchid\Screens\Places;
 
 use App\Models\Icebreaker;
+use App\Models\Pilgrim;
 use App\Models\PilgrimGroup;
 use App\Models\Place;
 use App\Orchid\Layouts\EventListLayout;
 use App\Orchid\Layouts\PlaceListLayout;
+use App\Orchid\Layouts\StatsListLayout;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
@@ -30,9 +33,32 @@ class PlaceListScreen extends Screen
                 ->where('place_user.user_id', Auth::user()->id)
                 ->latest()->get();
         }
+//        DB::enableQueryLog();
+
+        $stats = Pilgrim::
+            select('places.id','places.title','gender', DB::raw('COUNT(*) as pilgrims'))
+            ->join('pilgrim_groups', 'pilgrim_groups.id', '=', 'pilgrims.group_id')
+            ->join('places', 'places.id', '=', 'pilgrim_groups.place_id')
+            ->groupBy(['places.id', 'gender'])->get();
+//        dd(DB::getQueryLog());
+
+//        var_dump(json_encode($stats));
+//        die();
+
+//        foreach($places as $place) {
+//            foreach($stats as $stat) {
+//                if($place->id == $stat->id) {
+//                    $place->stats = $stat;
+////                    var_dump($place);
+//                }
+//            }
+//        }
+//        var_dump(json_encode($places));
+//        die();
 
         return [
-            'places' => $places
+            'places' => $places,
+            'stats' => $stats
         ];
     }
 
@@ -68,7 +94,8 @@ class PlaceListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            PlaceListLayout::class
+            PlaceListLayout::class,
+            StatsListLayout::class
         ];
     }
 }
